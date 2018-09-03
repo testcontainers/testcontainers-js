@@ -1,0 +1,39 @@
+{
+  "name": "testcontainers-javascript",
+  "version": "1.0.0",
+  "author": "Gurpreet Sohal",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^23.3.1",
+    "@types/redis": "^2.8.6",
+    "jest": "^23.5.0",
+    "nuget": "^2.0.2",
+    "redis": "^2.8.0",
+    "redis-ts-async": "^0.2.1",
+    "ts-jest": "^23.1.4"
+  },
+  "scripts": {
+    "compile": "tsc && npm run lint",
+    "lint": "tslint --project .",
+    "test": "jest"
+  },
+  "dependencies": {
+    "async-redis": "^1.1.4",
+    "docker-client": "^1.38.1",
+    "typescript": "^3.0.1"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
+}
