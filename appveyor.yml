@@ -1,0 +1,15 @@
+version: 0.0.2.{build}
+pull_requests:
+  do_not_increment_build_number: true
+branches:
+  only:
+    - master
+image: ubuntu
+stack: node 8.11, docker
+services: docker
+install:
+  - npm install
+test_script:
+  # - docker run -d redis -P 6379:6379
+  - npm test
+build: off
