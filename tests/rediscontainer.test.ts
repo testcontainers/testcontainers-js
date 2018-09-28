@@ -19,7 +19,7 @@ describe("Redis Container Tests", () => {
     await client.setAsync("name", "gurpreet");
     const name = await client.getAsync("name");
     expect(name).toBe("gurpreet");
-    await client.quitAsync();
+    return client.quitAsync();
   });
 
   afterAll(async () => {

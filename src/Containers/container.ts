@@ -22,18 +22,14 @@ export default class Container {
   }
 
   private async create(): Promise<DockerClient.Container> {
-    const getImage = this.Client.getImage(this.DockerImageName);
-    const get = await getImage.get();
-    get.on("error", error => {
+    const createImage = await this.Client.createImage({
+      fromImage: this.DockerImageName
+    });
+
+    createImage.on("error", error => {
       console.error(error);
     });
 
-    const stream = await this.Client.createImage({
-      fromImage: this.DockerImageName
-    });
-    stream.on("error", error => {
-      console.error(error);
-    });
     const createContainerParams = this.applyConfiguration();
     return this.Client.createContainer(createContainerParams);
   }
@@ -47,10 +43,13 @@ export default class Container {
       Env: env,
       ExposedPorts: exposedPorts,
       Labels: this.Labels,
-      Tty: true,
+      Tty: false,
       HostConfig: {
         PortBindings: portBindings
-      }
+      },
+      AttachStdin: false,
+      AttachStdout: true,
+      AttachStderr: true
     };
   }
 
